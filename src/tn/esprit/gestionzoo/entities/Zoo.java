@@ -2,6 +2,7 @@
 package tn.esprit.gestionzoo.entities;
 public class Zoo {
     private Animal[] animals;
+    private Aquatic [] aquaticAnimals;
     private String name;
     private String city;
     private int nbrCages;
@@ -11,6 +12,7 @@ public class Zoo {
         this.city = city;
         this.nbrCages = nbrCages;
         this.animals = new Animal[nbrCages];
+        this.aquaticAnimals = new Aquatic[10];
     }
 
     public boolean isZooFull() {
@@ -49,6 +51,14 @@ public class Zoo {
         }
     }
 
+    public void addAquaticAnimal(Aquatic aquaticAnimal) {
+        for (int i = 0; i < aquaticAnimals.length; i++) {
+            if (aquaticAnimals[i] == null) {
+                aquaticAnimals[i] = aquaticAnimal;
+                break;
+            }
+        }
+    }
     @Override
     public String toString() {
         String result = "Nom du zoo : " + name + "\nVille : " + city + "\nNombre de cages : " + nbrCages + "\n";
