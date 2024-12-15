@@ -1,33 +1,35 @@
 package main;
 
+import entities.AffectationHashMap;
+import entities.Departement;
 import entities.Employe;
-import entities.SocieteArrayList;
+
+import java.util.SortedMap;
 
 public class EmployeManagement {
 
     public static void main(String[] args) {
-        SocieteArrayList societe = new SocieteArrayList();
+        AffectationHashMap AHM = new AffectationHashMap();
 
-        Employe e1 = new Employe(1, "El_Jazi", "Amal", "IT", 5);
-        Employe e2 = new Employe(2, "Touil", "Samar", "HR", 3);
-        Employe e3 = new Employe(3, "Ajlani", "Ranim", "IT", 4);
+        Employe e1 = new Employe(1, "Amal");
+        Employe e2 = new Employe(2, "Ranim");
+        Employe e3 = new Employe(3, "Zayneb");
 
-        societe.ajouterEmploye(e1);
-        societe.ajouterEmploye(e2);
-        societe.ajouterEmploye(e3);
+        Departement d1 = new Departement(101, "RH");
+        Departement d2 = new Departement(102, "IT");
 
-        System.out.println("Liste des employés:");
-        societe.displayEmploye();
+        AHM.ajouterEmployeDepartement(e1, d1);
+        AHM.ajouterEmployeDepartement(e2, d2);
+        AHM.ajouterEmployeDepartement(e3, d1);
 
-        System.out.println("Recherche par nom (El_Jazi): " + societe.rechercherEmploye("El_Jazi"));
-        System.out.println("Recherche par employé (e1): " + societe.rechercherEmploye(e1));
+        AHM.afficherEmployesEtDepartements();
 
-        System.out.println("Tri par ID:");
-        societe.trierEmployeParId();
-        societe.displayEmploye();
+        AHM.supprimerEmploye(e2);
+        AHM.afficherEmployesEtDepartements();
 
-        System.out.println("Tri par département et grade:");
-        societe.trierEmployeParNomDepartementEtGrade();
-        societe.displayEmploye();
+        System.out.println("Employé e1 trouvé : " + AHM.rechercherEmploye(e1));
+
+        SortedMap<Employe, Departement> trie = AHM.trierMap();
+        System.out.println("Collection triée : " + trie);
     }
 }

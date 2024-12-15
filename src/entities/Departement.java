@@ -1,16 +1,16 @@
 package entities;
 
+import java.util.Objects;
+
 public class Departement {
     private int id;
     private String nom;
-    private int nombreEmployes;
 
 
     public Departement() {}
-    public Departement(int id, String nom, int nombreEmployes) {
+    public Departement(int id, String nom) {
         this.id = id;
         this.nom = nom;
-        this.nombreEmployes = nombreEmployes;
     }
     public int getId() {
         return id;
@@ -24,12 +24,7 @@ public class Departement {
     public void setNom(String nom) {
         this.nom = nom;
     }
-    public int getNombreEmployes() {
-        return nombreEmployes;
-    }
-    public void setNombreEmployes(int nombreEmployes) {
-        this.nombreEmployes = nombreEmployes;
-    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -43,9 +38,13 @@ public class Departement {
     public String toString() {
         return "Departement{" +
                 "id=" + id +
-                ", nom='" + nom + '\'' +
-                ", nombreEmployes=" + nombreEmployes +
+                ", nom='" + nom +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }
